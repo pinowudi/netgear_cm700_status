@@ -16,7 +16,7 @@ PASSWORD='password'
 ## Set up first run
 ```python
 $ cp config.py.default config.py
-$ python req_ngcm700.py
+$ python ngcm700_status.py
 ```
 
 ## Output
