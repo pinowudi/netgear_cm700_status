@@ -1,0 +1,3 @@
+NETGEAR_URL='http://192.168.100.1/DocsisStatus.htm'
+USERNAME='admin'
+PASSWORD='password'
