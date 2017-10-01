@@ -3,7 +3,7 @@
 This code scrapes the DocsysStatus.htm page of the CM700 web administration address. This may be useful for scheduling regular collection and monitoring of status to help troubleshoot negotiation, reset, and power issues with cable provider support staff. Target use for the script to feed a log collector.
 
 ## A note on security
-These devices have a small embedded linux on board and an exposed web adminsitration interface on a staticly-routed default IP address. This makes the devices an easy target for javascript redirects from web pages looking to pwn devices configured with default credentials. I recommend changing the default credentials of your cable modem as soon as possible. [Do so for this model (http://admin:password@192.168.100.1/SetPassword.htm)]
+These devices have a small embedded linux on board and an exposed web adminsitration interface on a staticly-routed default IP address. This makes the devices an easy target for javascript redirects from web pages looking to pwn devices configured with default credentials. I recommend changing the default credentials of your cable modem as soon as possible. [Do so for this model](http://admin:password@192.168.100.1/SetPassword.htm "Reset CM700 Password")
 
 ## Configuation
 The default address and credentials for the CM700 are provided in the `config.py.default` file. Just copy it to `config.py` and adjust the address and password to fit your configuation.
