@@ -3,6 +3,7 @@ from requests.auth import HTTPBasicAuth
 import re
 import json
 import sys
+from time import sleep
 from config import *
 
 def parse_upstream(inputstring):
