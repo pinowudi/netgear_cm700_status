@@ -57,13 +57,11 @@ def parse_bios(inputstring):
     #print json.dumps(linedict, indent=4, sort_keys=True)
     return linedict
 
-r = requests.get(NETGEAR_URL, auth=(USERNAME,PASSWORD))
-#print('Status: %s' % r.status_code)
+client = requests.Session()
+r = client.get(NETGEAR_URL)
+r = client.get(NETGEAR_URL, auth=(USERNAME,PASSWORD))
 if r.status_code!=200:
-    sleep(2)
-    r = requests.get(NETGEAR_URL, auth=(USERNAME,PASSWORD))
-    if r.status_code!=200:
-        sys.exit("ERROR: Invalid status code %s" % r.status_code)
+    sys.exit("ERROR: Invalid status code %s" % r.status_code)
 jsonprinter={}
 valuelist = re.compile('.*var tagValueList.*')
 matches = valuelist.findall(r.text)
