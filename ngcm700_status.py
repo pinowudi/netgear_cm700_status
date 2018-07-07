@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import requests
 from requests.auth import HTTPBasicAuth
 import re
