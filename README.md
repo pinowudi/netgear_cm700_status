@@ -5,7 +5,17 @@ This code scrapes the DocsysStatus.htm page of the CM700 web administration addr
 ## A note on security
 These devices have a small embedded linux on board and an exposed web adminsitration interface on a staticly-routed default IP address. This makes the devices an easy target for javascript redirects from web pages looking to pwn devices configured with default credentials. I recommend changing the default credentials of your cable modem as soon as possible. [Do so for this model](http://admin:password@192.168.100.1/SetPassword.htm "Reset CM700 Password")
 
-## Configuation
+# Configuation
+
+## Create a pipenv environment
+Make sure pipenv is installed and has the dependent libraries.
+
+```shell
+$ pip install --user pipenv
+$ pipenv install requests config
+```
+
+## Cable modem settings
 The default address and credentials for the CM700 are provided in the `config.py.default` file. Just copy it to `config.py` and adjust the address and password to fit your configuation.
 ```python
 NETGEAR_URL='http://192.168.100.1/DocsisStatus.htm'
@@ -15,11 +25,14 @@ PASSWORD='password'
 
 ## Set up first run
 ```shell
-cp config.py.default config.py
-python ngcm700_status.py
+$ cp config.py.default config.py
+[ edit config.py with credentials]
+$ pipenv run python ngcm700_status.py
 ```
 
-## Output
+The `launch.sh` script has been provided to help wrap the initiation of the pipenv environment. 
+
+# Output
 Output will be a JSON dump of the parsed configuraiton settings from the DocsisStatus.htm page of the cable modem. 
 
 Example:
