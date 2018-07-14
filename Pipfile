@@ -6,7 +6,7 @@ name = "pypi"
 [dev-packages]
 
 [packages]
-requests = "*"
+requests = {git = "git://github.com/georgestarcher/Splunk-Class-httpevent.git"}
 config = "*"
 
 [requires]

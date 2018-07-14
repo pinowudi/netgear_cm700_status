@@ -6,6 +6,10 @@ import json
 import sys
 from time import sleep
 from config import *
+try:
+    from splunk_http_event_collector import http_event_collector
+except ImportError as err_msg:
+    print(err_msg)
 
 def parse_upstream(inputstring):
     fieldlist = ['channel','lock_status','channel_type','channel_id','symbol_rate','frequency','power']
@@ -58,6 +62,20 @@ def parse_bios(inputstring):
     #print json.dumps(linedict, indent=4, sort_keys=True)
     return linedict
 
+def print_to_hec(event):
+    http_event_collector_key = SPLUNK_HEC_KEY
+    http_event_collector_host = SPLUNK_HEC_HOST
+    testevent = http_event_collector(http_event_collector_key, http_event_collector_host)
+    testevent.popNullFields = True
+    payload = {}
+    payload.update({"index":SPLUNK_HEC_INDEX})
+    payload.update({"sourcetype":"netgear_cm700"})
+    payload.update({"source":"netgear_cm700_status"})
+    payload.update({"host":SPLUNK_EVENT_HOST})
+    payload.update({"event":event})
+    testevent.sendEvent(payload)
+    return
+
 client = requests.Session()
 r = client.get(NETGEAR_URL)
 r = client.get(NETGEAR_URL, auth=(USERNAME,PASSWORD))
@@ -86,4 +104,9 @@ for match in matches:
                 jsonprinter['bios']=parse_bios(quote.search(match).group(1))
             else:
                 print('Line match error')
-print(json.dumps(jsonprinter, indent=4, sort_keys=True))
+if OUTPUT_TYPE=='splunk':
+    print_to_hec(jsonprinter)
+elif OUTPUT_TYPE=='pretty':
+    print(json.dumps(jsonprinter, indent=4, sort_keys=True))
+else:
+    print(jsonprinter)
