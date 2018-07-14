@@ -25,7 +25,7 @@ PASSWORD='password'
 
 ## Splunk settings
 In addition to JSON output to STDOUT, there is also a Splunk HTTP Event Collector output provided based on [George Starcher's Splunk-Class-httpevent module](https://github.com/georgestarcher/Splunk-Class-httpevent.git). Be sure to add that as a dependency if using this module. To enable, you have to set up [Splunk HTTP Event Collector](http://docs.splunk.com/Documentation/Splunk/latest/Data/AboutHEC) and define the following variables in config.py.
-```
+```python
 SPLUNK_HEC_KEY='fill_token_provided_by_HEC_setup'
 SPLUNK_HEC_HOST='fill_splunk_ip_or_hostname'
 SPLUNK_HEC_INDEX='index_this_is_going_to'
