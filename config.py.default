@@ -1,4 +1,6 @@
 NETGEAR_URL='http://192.168.100.1/DocsisStatus.htm'
+NETGEAR_RESET_URL='http://192.168.100.1/goform/RouterStatus?id='
+NETGEAR_ROUTER_STATUS_URL='http://192.168.100.1/RouterStatus.htm'
 USERNAME='admin'
 PASSWORD='password'
 OUTPUT_TYPE='pretty'
